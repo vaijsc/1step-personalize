@@ -1,0 +1,9 @@
+diffusers
+pytorch_lightning
+
+einops
+protobuf
+chardet
+Triton
+peft
+notebook

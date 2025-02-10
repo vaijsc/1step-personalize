@@ -1,0 +1,26 @@
+accelerate launch --num_processes 1 --mixed_precision "fp16" \
+    --main_process_port 25999 \
+    train_swiftbrush_dreambooth.py \
+    --pretrained_model_name_or_path "stabilityai/stable-diffusion-2-1-base" \
+    --train_data_dir "/root/research/1-step-personalize/Data/COCA_dataset_large/prompts" \
+    --output_dir "swiftbrush-output-dreambooth_can_2" \
+    --logging_dir "logs" \
+    --mixed_precision "fp16" \
+    --dataloader_num_workers 4 \
+    --resolution 512 \
+    --use_ema \
+    --validation_prompts "A photo of sks can in Time Square." \
+    --validation_steps 500 \
+    --num_validation_images 4 \
+    --train_batch_size 8 \
+    --gradient_accumulation_steps 1 \
+    --set_grads_to_none \
+    --guidance_scale 4.5 \
+    --learning_rate 1.e-06 \
+    --learning_rate_lora 1.e-03 \
+    --lr_scheduler "constant" --lr_warmup_steps 0 \
+    --lora_rank 64 --lora_alpha 108 \
+    --num_train_epochs 5 \
+    --max_train_steps 50000 \
+    --checkpointing_steps 1000 \
+    --seed 42
